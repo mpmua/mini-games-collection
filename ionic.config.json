@@ -1,0 +1,7 @@
+{
+  "name": "Mini Games Collection",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
