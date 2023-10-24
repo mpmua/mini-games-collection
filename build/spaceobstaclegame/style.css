@@ -1,56 +1,44 @@
 * {
-    
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   user-select: none;
-
-  
 }
 
 body {
-
- overflow: hidden;
- height: 100vh;
- font-family: 'Electrolize', sans-serif;
- /* max-width: 412px; */
-  
+  overflow: hidden;
+  height: 100vh;
+  font-family: "Electrolize", sans-serif;
+  /* max-width: 412px; */
 }
 
 @font-face {
-  
-  font-family: 'Electrolize';
+  font-family: "Electrolize";
   src: url("fonts/Electrolize-Regular.ttf");
-  
 }
 
 #page-wrap {
-    
-    position: relative;
-    background: url("img/space-background.jpg");
-    background-color: #1d2951;
-    background-position: center;
-    background-size: cover;
-    height: 100%;
-    margin: 0 auto;
-    /* max-width: 412px; */
-    overflow: hidden;
-    
-    
+  position: relative;
+  background: url("img/space-background.jpg");
+  background-color: #1d2951;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  margin: 0 auto;
+  /* max-width: 412px; */
+  overflow: hidden;
 }
 
-.current-score, .high-score {
-  
+.current-score,
+.high-score {
   padding: 0.2rem;
   font-size: 0.8rem;
-  /* position: absolute; */
+  position: relative;
   color: #fff;
   z-index: 10;
-  
 }
 
 .score {
-  
   font-size: 2rem;
   position: absolute;
   left: 50%;
@@ -58,263 +46,218 @@ body {
   transform: translate(-50%, -50%);
   color: #fff;
   z-index: 10;
-  
 }
 
 #player {
-  
   width: 8%;
   height: 3%;
   position: absolute;
   left: 35%;
   user-select: none;
-  
 }
 
 .player-img {
-  
   height: 100%;
   width: 100%;
-  
 }
 
 .obstacle {
-  
-/*  display: none;*/
+  /*  display: none;*/
   position: absolute;
   width: 10%;
   height: 42%;
-/*  width: 1%;
+  /*  width: 1%;
   height: 1%;*/
   background-color: #5a5a5a;
-  
 }
 
 .obstacle img {
-
   height: 100%;
   width: 100%;
-
 }
 
 #leaderboard-wrap {
-  
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
   z-index: 20;
-  
 }
 
 .game-intro-text {
-
   color: #fff;
   font-size: 1.2rem;
   text-align: center;
   margin: 0.1rem 0 0.7rem 0;
-
 }
 
 .leaderboard-text {
-    
   color: #fff;
   width: 100%;
   margin: 0 auto;
   text-align: center;
   font-size: 1.5rem;
   padding: 0.4rem;
-  
 }
 
 .loading-text {
-    
   /* text-align: center; */
-/*  margin: 0.3rem auto;*/
+  /*  margin: 0.3rem auto;*/
   font-size: 1.2rem;
   color: #fff;
-  
 }
 
 #scores-table {
-     
-/*    position: absolute;*/
-     background-color: #212121; 
-    /* width: 45%; */
-    height: 40%;
-    margin: 0 auto 0 auto;
-    padding: 0.3rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    border-box: 0 2px 0 0 #dbd8d8;
-    border-radius: 3%;
-    
-    
+  /*    position: absolute;*/
+  background-color: #212121;
+  /* width: 45%; */
+  height: 40%;
+  margin: 0 auto 0 auto;
+  padding: 0.3rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-box: 0 2px 0 0 #dbd8d8;
+  border-radius: 3%;
 }
 
 .score-list-li {
-    
-    height: 10%;
-    width: 45%;
-    font-size: 70%;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #000;
-    border-radius: 0.3rem;
-    list-style-type: none;
-    margin:  0.2rem;
-    padding: 0.5rem;
-  
+  height: 10%;
+  width: 45%;
+  font-size: 70%;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #000;
+  border-radius: 0.3rem;
+  list-style-type: none;
+  margin: 0.2rem;
+  padding: 0.5rem;
 }
 
 .score-list-li:nth-child(3) {
-    
-    background: #e2c210;
-    
+  background: #e2c210;
 }
 
 .score-list-li:nth-child(4) {
-    
-    background: silver;
-    
+  background: silver;
 }
 
 .score-list-li:nth-child(5) {
-    
-    background: #CD7F32;
-    
+  background: #cd7f32;
 }
 
 .start-button {
-
- /* height: 2%;*/
+  /* height: 2%;*/
   width: 70%;
   padding: 0.5rem;
   margin: 0.3rem auto;
   border: none;
   background-color: yellow;
   border-radius: 0.3rem;
-
 }
 
 .game-over-wrapper {
-
-display: block;
-background-color: #212121;
-margin: 1rem auto 0 auto;
-height: 20%;
-z-index: 5;
-visibility: hidden;  
-border-top-left-radius: 0.3rem;
-border-top-right-radius: 0.3rem;
-
-
+  display: block;
+  background-color: #212121;
+  margin: 1rem auto 0 auto;
+  height: 20%;
+  z-index: 5;
+  visibility: hidden;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
 
 .game-over-text {
-
-color: #ffff00;
-padding-top: 0.5rem;
-padding-bottom: 0.5rem;
-text-align: center;
-font-size: 2rem;
-
+  color: #ffff00;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .submit-score-text {
-  
   margin-bottom: 0.3rem;
   text-align: center;
   font-size: 0.9rem;
   color: #fff;
-
-
 }
 
 .initials-input {
+  display: block;
+  padding: 0.5rem;
+  width: 40%;
+  border-radius: 0.3rem;
+  text-align: center;
+  border-style: none;
+  margin: 0 auto 0 auto;
 
-display: block;
-padding: 0.5rem;
-width: 40%;
-border-radius: 0.3rem;
-text-align: center;
-border-style: none;
-margin: 0 auto 0 auto;
-
-font-size: 0.7rem;
-
+  font-size: 0.7rem;
 }
 
 .max-char-text {
-
   text-align: center;
   color: red;
   font-size: 0.6rem;
   padding: 0.2rem;
-
 }
 
 .score-submit-button {
-
-display: block;
-border: none;
-width: 30%;
-padding: 0.5rem;
-margin: 0.3rem auto 0 auto;
-border-radius: 0.3rem;
-
-
+  display: block;
+  border: none;
+  width: 30%;
+  padding: 0.5rem;
+  margin: 0.3rem auto 0 auto;
+  border-radius: 0.3rem;
 }
 
 .restart-icon {
-
-display: block;
-margin: 0 auto;
-/* font-size: 2.1rem; */
-width: 35%;
-height: 100%;
-/* margin-top: 0.2rem; */
-/* color: #ffff00; */
-
+  display: block;
+  margin: 0 auto;
+  /* font-size: 2.1rem; */
+  width: 35%;
+  height: 100%;
+  /* margin-top: 0.2rem; */
+  /* color: #ffff00; */
 }
 
 .restart-text {
-
-margin-top: 0.2rem;
-color: #ffff00;
-
+  margin-top: 0.2rem;
+  color: #ffff00;
 }
 
 /* (A) WRONG ORIENTATION - SHOW MESSAGE HIDE CONTENT */
-@media only screen and (orientation:landscape) {
-  #turn { display:block; }
-  #page-wrap { display:none; }
+@media only screen and (orientation: landscape) {
+  #turn {
+    display: block;
+  }
+  #page-wrap {
+    display: none;
+  }
 }
- 
+
 /* (B) CORRECT ORIENTATION - SHOW CONTENT HIDE MESSAGE */
-@media only screen and (orientation:portrait) {
-  #turn { display:none; }
-  #page-wrap { display:block; }
+@media only screen and (orientation: portrait) {
+  #turn {
+    display: none;
+  }
+  #page-wrap {
+    display: block;
+  }
 }
 
 #turn {
-  
   background-color: #5a5a5a;
   height: 100vh;
   width: 100vw;
-  
 }
 
 #turn p {
-  
   font-size: 3rem;
   text-align: center;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  
 }
