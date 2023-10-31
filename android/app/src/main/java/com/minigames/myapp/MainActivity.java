@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.minigames.myapp;
 
 import com.getcapacitor.BridgeActivity;
 

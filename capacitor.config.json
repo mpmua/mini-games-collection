@@ -1,0 +1,10 @@
+{
+  "appId": "com.minigames.myapp",
+  "appName": "Mini Games Collection",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+  
+}
+
