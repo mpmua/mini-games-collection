@@ -1,0 +1,11 @@
+{
+  "appId": "com.minigames.myapp",
+  "appName": "Mini Games Collection",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
