@@ -1,5 +1,7 @@
+// import { Capacitor } from "@capacitor/core";
+
 let pageWrap = document.getElementById("page-wrap");
-let player = document.getElementById('player');
+let player = document.getElementById("player");
 let playerImg = document.querySelector(".player-img");
 
 let playerScore;
@@ -15,11 +17,11 @@ const submitScoreText = document.querySelector(".submit-score-text");
 const scoreSubmitButton = document.querySelector(".score-submit-button");
 let initialsInputElem = document.querySelector(".initials-input");
 
-var scoreListElem = document.getElementById('scores-table');
+var scoreListElem = document.getElementById("scores-table");
 var maxCharText = document.querySelector(".max-char-text");
-  
-var scoreListLi = document.createElement('li');
- 
+
+var scoreListLi = document.createElement("li");
+
 // Create start button
 var startButton = document.createElement("button");
 startButton.setAttribute("class", "start-button");
@@ -40,7 +42,7 @@ startButton.innerText = "Start";
 // // This array stores the name+scores from firebase initially
 
 // var loadingText = document.querySelector(".loading-text");
-  
+
 //   userScoresList = firebase.database().ref("scores");
 
 //   userScoresList.on('value', function gotData(userScoresList) {
@@ -55,41 +57,38 @@ startButton.innerText = "Start";
 //       var score = scores[key].score;
 
 //     scoresArray.push({
-          
+
 //           name: name,
 //           score: score
-          
+
 //       });
 
 //       if (i==keys.length-1) {
-        
+
 //         loadLeaderboardAgain();
 //         // console.log("i==keys.length-1")
-        
+
 //       }
-  
-       
+
 //   }
-  
-  
-  
+
 //   }, function errorData() {
-  
+
 //   // console.log("errorData function triggered");
-  
+
 //   });
 
 //   loadLeaderboardAgain = function() {
-      
+
 //       loadingText.style.display = "none";
-      
+
 //       finalScoresArray = scoresArray.sort((a, b) => (a.score < b.score) ? 1 : -1);
-      
+
 //  for (let v = 0; v < scoresArray.length; v++) {
-   
+
 //     if (v == 10) {
 
-//       scoreListElem.appendChild(startButton);    
+//       scoreListElem.appendChild(startButton);
 //       return;
 
 // }
@@ -101,8 +100,8 @@ startButton.innerText = "Start";
 // scoreListElem.appendChild(scoreListLi);
 
 // scoreListLi.innerHTML +=
-// `<div> ${v+1}${"."}</div>` + 
-// `<div>${scoresArray[v].name}</div>` + 
+// `<div> ${v+1}${"."}</div>` +
+// `<div>${scoresArray[v].name}</div>` +
 // `<div>${scoresArray[v].score}</div>`;
 
 // }
@@ -110,15 +109,13 @@ startButton.innerText = "Start";
 // // console.log(finalScoresArray)
 
 //   };
-  
-    
+
 // }
 
 // loadLeaderboard();
 
-  // --------------END OF FIREBASE----------------
+// --------------END OF FIREBASE----------------
 
-  
 // Create high score element and live score counter
 
 let scoreCount = 0;
@@ -132,24 +129,19 @@ let highScoreElem = document.createElement("div");
 pageWrap.appendChild(highScoreElem);
 highScoreElem.setAttribute("class", "high-score");
 
-  scoreListElem.appendChild(startButton);
-  
-  startButton.addEventListener("click", startGame);
-  
-  var scoreCountInterval;
-  var moveObstaclesInterval;
-  var playerDropInterval;
-  
-  var obstacleSpeedVar;
-  obstacleSpeedVar = 0.6;
+scoreListElem.appendChild(startButton);
 
+startButton.addEventListener("click", startGame);
 
+var scoreCountInterval;
+var moveObstaclesInterval;
+var playerDropInterval;
+
+var obstacleSpeedVar;
+obstacleSpeedVar = 0.6;
 
 function increaseSpeed() {
-
- playerImg.style.transform = `rotate(${defaultRotatePos}deg)`;
-//  console.log(defaultRotatePos)
-
+  playerImg.style.transform = `rotate(${defaultRotatePos}deg)`;
 }
 
 player.y = 30;
@@ -163,81 +155,53 @@ let playerJumpDistance = 0.02;
 let playerDropDistance = 0.3;
 
 function playerDrop() {
+  if (defaultRotatePos < 90 && gameOver == true) {
+    defaultRotatePos += 0.6;
+    playerImg.style.transform = `rotate(${defaultRotatePos}deg)`;
+  }
 
- // console.log("playerdrop function executed")
- 
-      if (defaultRotatePos < 90 && gameOver == true) {
+  if (jumping == false) {
+    //    playerDropDistance += 0.5;
 
-        defaultRotatePos+=0.6;
-        playerImg.style.transform = `rotate(${defaultRotatePos}deg)`;
-    
-      }
-      
-    if (jumping == false)  {
-      
-   //    playerDropDistance += 0.5;
-      // console.log(playerDropDistance)
-       playerTop = (player.getBoundingClientRect().top / window.innerHeight) * 100;
-       player.style.top = (playerTop+0.30) + "%";
+    playerTop = (player.getBoundingClientRect().top / window.innerHeight) * 100;
+    player.style.top = playerTop + 0.3 + "%";
     //   player.style.top = playerDropDistance + "%";
-    
-    } else {
-      
-      
-      
-    }
-
+  } else {
+  }
 }
 
 let jumpCount;
 
 function jump() {
-  
   if (gameOver == false) {
-  
-  playerDropDistance = 0.02;
-//  console.log("jump function executed")
+    playerDropDistance = 0.02;
 
-  jumping = true;
-  jumpCount = 0;
-  
-  var jumpInterval = setInterval( () => {
-    
-    playerTop = (player.getBoundingClientRect().top / window.innerHeight) * 100;
+    jumping = true;
+    jumpCount = 0;
 
-    if (jumpCount < 25) {
-      
-   //   clearInterval(playerDrop);
-      
-      player.style.top = (playerTop-0.30) + "%";
-  
-   //   playerJumpDistance += 0.015;
- //     player.style.top = (playerTop-playerJumpDistance) + "%";
-  //    console.log("playerJumpDistance is " + playerJumpDistance);
-      
-      
-    }
-    
-    else if (jumpCount > 30) {
+    var jumpInterval = setInterval(() => {
+      playerTop =
+        (player.getBoundingClientRect().top / window.innerHeight) * 100;
 
-      clearInterval(jumpInterval);
-      jumping = false;
-      jumpCount = 0;
-      playerJumpDistance = 0.03;
+      if (jumpCount < 25) {
+        //   clearInterval(playerDrop);
 
-    }
+        player.style.top = playerTop - 0.3 + "%";
 
-    jumpCount++;
-    
-  
+        //   playerJumpDistance += 0.015;
+        //     player.style.top = (playerTop-playerJumpDistance) + "%";
+      } else if (jumpCount > 30) {
+        clearInterval(jumpInterval);
+        jumping = false;
+        jumpCount = 0;
+        playerJumpDistance = 0.03;
+      }
 
-  }, 1)
-
-
+      jumpCount++;
+    }, 1);
+  }
 }
 
-}
-  
 var obstacle;
 var bottomObstacle;
 
@@ -247,103 +211,82 @@ var bottomObstacle;
   
 }*/
 
-let obstacleVerticalCloseness = function() {
-  
+let obstacleVerticalCloseness = function () {
   return Math.floor(Math.random() * 10) + 5;
- // return Math.floor(Math.random() * 1) + 3;
-  
-}
+  // return Math.floor(Math.random() * 1) + 3;
+};
 
 var randNumber;
 var obstacleSpacing = 60;
 function createObstacles() {
-  
   for (let o = 3; o < 6; o++) {
-    
     randNumber = obstacleVerticalCloseness();
     obstacle = document.createElement("div");
     obstacle.setAttribute("class", "obstacle");
     pageWrap.appendChild(obstacle);
-    obstacle.x = o*obstacleSpacing;
+    obstacle.x = o * obstacleSpacing;
     obstacle.style.left = obstacle.x + "%";
     obstacle.style.top = -randNumber + "%";
 
     let obstacleImg = document.createElement("img");
     obstacle.appendChild(obstacleImg);
     obstacleImg.src = "img/satellite.png";
-    
+
     obstacle = document.createElement("div");
     obstacle.setAttribute("class", "obstacle");
     pageWrap.appendChild(obstacle);
-    obstacle.x = o*obstacleSpacing;
+    obstacle.x = o * obstacleSpacing;
     obstacle.style.left = obstacle.x + "%";
     obstacle.style.bottom = randNumber + "%";
 
     obstacleImg = document.createElement("img");
     obstacle.appendChild(obstacleImg);
     obstacleImg.src = "img/satellite.png";
-
-    
   }
-  
 }
 
 createObstacles();
 
 function startGame() {
-  
   defaultRotatePos = 1;
   playerScore = 0;
   scoreCount = 0;
   gameOver = false;
   createObstacles();
-  
 
   clearInterval(playerDropInterval);
 
   var allObstacles = document.querySelectorAll(".obstacle");
-  allObstacles.forEach(function(item) {
-       
-       item.style.display = "none";
-       item.x += 120;
-      
-    })
-    
-  setTimeout(function() {
-    
-  moveObstaclesInterval = setInterval(moveObstacles, 10);
-    
-    setTimeout(function() {
-      
-      allObstacles.forEach(function(item) {
-       
-       item.style.display = "block"
-    //   item.x += 120;
-      
-    })
-      
+  allObstacles.forEach(function (item) {
+    item.style.display = "none";
+    item.x += 120;
+  });
+
+  setTimeout(function () {
+    moveObstaclesInterval = setInterval(moveObstacles, 10);
+
+    setTimeout(function () {
+      allObstacles.forEach(function (item) {
+        item.style.display = "block";
+        //   item.x += 120;
+      });
     }, 100);
-  
-  document.addEventListener("touchstart", jump);
-  scoreListElem.style.visibility = "hidden";
-  gameOverWrapper.style.visibility = "hidden";
-  // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
-  // initialsInputElem.style.visibility = "hidden";
-  // maxCharText.style.visibility = "hidden";
-  // scoreSubmitButton.style.visibility = "hidden";
-  // initialsInputElem.value = null;
-  scoreCountInterval = setInterval(increaseSpeed, 10);
-  playerDropInterval = setInterval(playerDrop, 10);
-  
-  
-  
-  }, 1);  
-    
+
+    document.addEventListener("touchstart", jump);
+    scoreListElem.style.visibility = "hidden";
+    gameOverWrapper.style.visibility = "hidden";
+    // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
+    // initialsInputElem.style.visibility = "hidden";
+    // maxCharText.style.visibility = "hidden";
+    // scoreSubmitButton.style.visibility = "hidden";
+    // initialsInputElem.value = null;
+    scoreCountInterval = setInterval(increaseSpeed, 10);
+    playerDropInterval = setInterval(playerDrop, 10);
+  }, 1);
+
   //  playerScoreElem.innerText = playerScore;
-   player.y = 40;  
-   player.style.top = player.y + "%";
-    
-  
+  player.y = 40;
+  player.style.top = player.y + "%";
 }
 
 let obstacleSpeed = 0.5;
@@ -351,65 +294,62 @@ let allObstacles = document.querySelectorAll(".obstacle");
 var randomHeightVar;
 
 function moveObstacles() {
-  
-  if (playerScore == 5 || playerScore == 10 || playerScore == 15 || playerScore == 20) {
-    
- //   obstacleSpeedVar += 0.1
+  if (
+    playerScore == 5 ||
+    playerScore == 10 ||
+    playerScore == 15 ||
+    playerScore == 20
+  ) {
+    //   obstacleSpeedVar += 0.1
     //   obstacleSpacing -= 1;
-    
   }
-  
-  randomHeightVar = Math.floor(Math.random() * 28) + 1;
-  
-  allObstacles.forEach( (item) => {
-  
-  let playerPos = player.getBoundingClientRect();
-  let obstaclePos = item.getBoundingClientRect();
 
-  scoreCount+=1;
-  console.log(scoreCount)
-  currentScoreElem.innerHTML = "Score " + scoreCount;
-  
-    if (collisionDetection(playerPos, obstaclePos) || playerPos.top < 0 || playerPos.bottom > pageWrap.getBoundingClientRect().bottom - 20) {
-      
+  randomHeightVar = Math.floor(Math.random() * 28) + 1;
+
+  allObstacles.forEach((item) => {
+    let playerPos = player.getBoundingClientRect();
+    let obstaclePos = item.getBoundingClientRect();
+
+    scoreCount += 1;
+
+    currentScoreElem.innerHTML = "Score " + scoreCount;
+
+    if (
+      collisionDetection(playerPos, obstaclePos) ||
+      playerPos.top < 0 ||
+      playerPos.bottom > pageWrap.getBoundingClientRect().bottom - 20
+    ) {
       gameOver = true;
       player.style.top = playerPos.top;
       document.removeEventListener("touchstart", jump);
-      
-      gameOverFunc();
-      
-    }
-    
-    // if (item.getBoundingClientRect().right === player.getBoundingClientRect().right) {
-      if (player.getBoundingClientRect().right === item.getBoundingClientRect().right) {
 
+      gameOverFunc();
+    }
+
+    // if (item.getBoundingClientRect().right === player.getBoundingClientRect().right) {
+    if (
+      player.getBoundingClientRect().right ===
+      item.getBoundingClientRect().right
+    ) {
       // playerScore+=1;
       // playerScoreElem.innerText = playerScore;
       // playerScoreElem.innerText = (playerScore/2);
-
-      
     }
-    
+
     if (item.x < -20 && item.getBoundingClientRect().top > 50) {
-      
       item.x = obstacleSpacing * 2.6;
       item.style.left = item.x + "%";
       item.style.bottom = randomHeightVar + "%";
-      // console.log("randomHeightVar in 1 is " + randomHeightVar);
-      
     } else if (item.x < -20 && item.getBoundingClientRect().top < 50) {
-      
-       item.x = obstacleSpacing * 2.6;
-       item.style.left = item.x + "%";
-       item.style.top = -randomHeightVar + "%";
-      //  console.log("randomHeightVar in 2 is " + randomHeightVar);
-      
+      item.x = obstacleSpacing * 2.6;
+      item.style.left = item.x + "%";
+      item.style.top = -randomHeightVar + "%";
     }
-  
+
     item.x -= obstacleSpeedVar;
     item.style.left = item.x + "%";
-    
-   /* let yo = 0;
+
+    /* let yo = 0;
     
     if (yo == 0) {
       
@@ -424,23 +364,20 @@ function moveObstacles() {
       yo = 0;
       
     }*/
-    
-   
-  
-});
-
-};
-
-
+  });
+}
 
 function collisionDetection(playerPos, obstaclePos) {
-  
-  return !(playerPos.bottom-2 < obstaclePos.top || playerPos.top-2 > obstaclePos.bottom || playerPos.right-2 < obstaclePos.left || playerPos.left+2 > obstaclePos.right);
-  
+  return !(
+    playerPos.bottom - 2 < obstaclePos.top ||
+    playerPos.top - 2 > obstaclePos.bottom ||
+    playerPos.right - 2 < obstaclePos.left ||
+    playerPos.left + 2 > obstaclePos.right
+  );
 }
 
 // var scoreCounter = 0;
-var highScore;  
+var highScore;
 var latestHighScore;
 
 // function increaseScore() {
@@ -450,36 +387,23 @@ var latestHighScore;
 // }
 
 function highScoreCheckInitial() {
+  latestHighScore = localStorage.getItem("score");
 
- latestHighScore = localStorage.getItem("score");
-
-if (latestHighScore > 0) {
-
-  highScoreElem.innerText = `High Score ${latestHighScore}`; 
-
-} else {
-
-  highScoreElem.innerText = ""; 
-
+  if (latestHighScore > 0) {
+    highScoreElem.innerText = `High Score ${latestHighScore}`;
+  } else {
+    highScoreElem.innerText = "";
+  }
 }
-
-}
-
-
-
 
 highScoreCheckInitial();
 
 function displayHighScore() {
-
   latestHighScore = localStorage.getItem("score");
 
-    if (latestHighScore > previousHighScore) {
-
-      highScore = latestHighScore;
-
-    }
-
+  if (latestHighScore > previousHighScore) {
+    highScore = latestHighScore;
+  }
 }
 
 // localStorage.setItem("score", 0);
@@ -487,17 +411,16 @@ var previousHighScore;
 var gameOver = false;
 
 function gameOverFunc() {
-  
   gameOver = true;
   gameIntroText.style.display = "none";
-  // console.log("game over");
-/*  scoreListElem.removeChild(startButton);
+
+  /*  scoreListElem.removeChild(startButton);
   scoreListElem.insertBefore(startButton, scoreListElem.childNodes[0]);*/
-//  startButton.innerHTML = `<i class="fas fa-undo-alt"></i>`;
-  
-//  startButton.innerHTML = `<img class="restart-icon" src="img/restart-icon.png"/>`;
+  //  startButton.innerHTML = `<i class="fas fa-undo-alt"></i>`;
+
+  //  startButton.innerHTML = `<img class="restart-icon" src="img/restart-icon.png"/>`;
   startButton.innerHTML = "Restart";
-//  startButton.style.backgroundColor = "transparent";
+  //  startButton.style.backgroundColor = "transparent";
   // BELOW COMMENTED OUT TO REMOVE LEADERBOARD
   // document.querySelector(".score-list-li:nth-child(4)").style.backgroundColor = "#e2c210";
   // document.querySelector(".score-list-li:nth-child(5)").style.backgroundColor = "silver";
@@ -506,10 +429,10 @@ function gameOverFunc() {
   gameOver = true;
   leaderboardWrap.style.top = "60%";
   clearInterval(moveObstaclesInterval);
-//  clearInterval(playerDropInterval);
+  //  clearInterval(playerDropInterval);
   clearInterval(scoreCountInterval);
   startButton.removeEventListener("click", startGame);
-  
+
   gameOverWrapper.style.visibility = "visible";
   scoreListElem.style.visibility = "visible";
   // BELOW COMMENTED OUT TO REMOVE LEADERBOARD
@@ -519,30 +442,24 @@ function gameOverFunc() {
   // scoreSubmitButton.style.visibility = "visible";
   // scoreListElem.style.borderTopLeftRadius = "0";
   // scoreListElem.style.borderTopRightRadius = "0";
-//  startButton.innerText = "Restart";
+  //  startButton.innerText = "Restart";
   startButton.addEventListener("click", startGame);
   previousHighScore = localStorage.getItem("score");
-  
-   if (scoreCount > previousHighScore) {
-      
+
+  if (scoreCount > previousHighScore) {
     localStorage.setItem("score", 0);
     localStorage.setItem("score", scoreCount);
-    //  console.log(localStorage.getItem("score", playerScore))
-   
-   }
+  }
 
-   displayHighScore();
-   highScoreCheckInitial();
-   
-   playerScore = 0;
-   
+  displayHighScore();
+  highScoreCheckInitial();
 
+  playerScore = 0;
 }
 
 //  }
 
 // --------------FIREBASE-------------------
-
 
 // var userScore;
 
@@ -551,33 +468,32 @@ function gameOverFunc() {
 // function submitScore() {
 
 //   playerScore-=1;
-  
+
 //   let allLeaderboardLi = document.querySelectorAll(".score-list-li");
-  
+
 //   if (initialsInputElem.value.length == 3) {
-    
+
 //     allLeaderboardLi.forEach(function(item) {
-    
+
 //       scoreListElem.removeChild(item);
 
 //   })
-  
+
 //  /* for (let g = 0; g < scoresArray.length; g++) {
-    
+
 //     scoresArray.splice(g);
-    
+
 //   }*/
-  
+
 //   for (let y = 0; y < scoresArray.length; y++) {
-  
+
 //   scoresArray.splice(y)
 //   // console.log(scoresArray[y])
-  
+
 // }
 
-  
 //   userScore = {
-    
+
 //     name: initialsInputElem.value.toUpperCase(),
 //     score: playerScore
 
@@ -592,18 +508,12 @@ function gameOverFunc() {
 // // console.log("name: " + userScore.name + "score " + userScore.score);
 // // console.log("Leaderboard: " + userScoresList);
 
-
 // //loadLeaderboard();
 
 // // console.log(scoresArray);
 
-
 //   }
-  
-  
+
 // }
 
 // --------------END FIREBASE-------------------
-
-
-  

@@ -1,86 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-          <!-- The core Firebase JS SDK is always required and must be listed first -->
-          <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script> -->
-          <!-- <script src="https://kit.fontawesome.com/0505a68c8d.js" crossorigin="anonymous"></script> -->
+  <head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script> -->
+    <!-- <script src="https://kit.fontawesome.com/0505a68c8d.js" crossorigin="anonymous"></script> -->
 
- 
-        <title>Page Title</title>
-       
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title>Page Title</title>
 
-         <link rel="stylesheet" type="text/css" href="styles.css">
-     
-    </head>
-    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <div id="turn">
-        <p>Please rotate your device!</p>
-      </div>
-        
-  <section id="page-wrap">
-    
-    <section id="game-wrap">
-        
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="global.css" />
+  </head>
+  <body>
+    <div id="turn">
+      <p>Please rotate your device!</p>
+    </div>
+
+    <section id="page-wrap">
+      <section id="game-wrap">
         <div class="sky">
-
-          <div class="score">
-            
-          </div> 
-            
-   
+          <div class="score"></div>
         </div>
-        
-        
-       
-       <div class="sand">
-      
-       </div>
-       
-       <div class="road">
-          
-           <img class="character-image" src="img/ice-cream-van.png" alt="touring-full"/>
-           
-                
-            
-        </div>
-  
-    </section>
-    
-    <section id="leaderboard-wrap">
-    
-     <div class="game-over-wrapper">
-            <p class="game-over-text">Game Over</p>
 
-            <!-- <p class="submit-score-text">""</p>
+        <div class="sand"></div>
+
+        <div class="road">
+          <img
+            class="character-image"
+            src="img/ice-cream-van.png"
+            alt="touring-full"
+          />
+        </div>
+      </section>
+
+      <section id="leaderboard-wrap">
+        <div class="game-over-wrapper">
+          <p class="game-over-text">Game Over</p>
+
+          <!-- <p class="submit-score-text">""</p>
             <input class="initials-input" input type="text" minlength="3" maxlength="3" placeholder="Your Initials">
             <p class="max-char-text">Characters Required: 3</p>
             <button class="score-submit-button">Submit</button> -->
-           </div>
+        </div>
 
-    <div id="scores-table">
-        <!-- <p class="leaderboard-text">Top 10 Leaderboard</p>
+        <div id="scores-table">
+          <!-- <p class="leaderboard-text">Top 10 Leaderboard</p>
         <p class="loading-text">Loading...</p> -->
-        <p class="game-intro-text">Tap to jump over obstacles</p>
-    </div>
-    
+          <p class="game-intro-text">Tap to jump over obstacles</p>
+        </div>
+      </section>
     </section>
-            
 
-  </section>
-
-
-
-
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-     <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> -->
 
-
-<!-- <script>
+    <!-- <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
     
@@ -90,10 +67,6 @@
 
 </script> -->
 
-<script src="script.js"></script>
-    
-    </body>
-    
-    
-    
+    <script src="script.js"></script>
+  </body>
 </html>

@@ -1,57 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-          <!-- The core Firebase JS SDK is always required and must be listed first -->
-          <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script> -->
-        
- 
-        <title>Page Title</title>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script> -->
 
-         <link rel="stylesheet" type="text/css" href="style.css">
-    
-    </head>
-    
-    <body>
-      
-      <div id="turn">
-          <p>Please rotate your device!</p>
-      </div>
-        
-  <section id="page-wrap">
-    
-    <section id="player">
-      <img class = "player-img" src="img/2drocket.png" alt="" />
-    </section>
-  
-     <section id="leaderboard-wrap">
-    
-        <div class="game-over-wrapper">
-            <p class="game-over-text">Game Over</p>
+    <title>Page Title</title>
 
-            <!-- <p class="submit-score-text">""</p> -->
-            <!-- <input class="initials-input" input type="text" maxlength="3" placeholder="Your Initials"> -->
-            <!-- <p class="max-char-text">Characters Required: 3</p> -->
-            <!-- <button class="score-submit-button">Submit</button> -->
-           </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <div id="scores-table">
-      
-        <!-- <p class="leaderboard-text">Top 10 Leaderboard</p>
-        <p class="loading-text">Loading...</p> -->
-        <p class="game-intro-text">Jump between the obstacles by tapping on the screen</p>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="global.css" />
+  </head>
+
+  <body>
+    <div id="turn">
+      <p>Please rotate your device!</p>
     </div>
-    
+
+    <section id="page-wrap">
+      <section id="player">
+        <img class="player-img" src="img/2drocket.png" alt="" />
+      </section>
+
+      <section id="leaderboard-wrap">
+        <div class="game-over-wrapper">
+          <p class="game-over-text">Game Over</p>
+
+          <!-- <p class="submit-score-text">""</p> -->
+          <!-- <input class="initials-input" input type="text" maxlength="3" placeholder="Your Initials"> -->
+          <!-- <p class="max-char-text">Characters Required: 3</p> -->
+          <!-- <button class="score-submit-button">Submit</button> -->
+        </div>
+
+        <div id="scores-table">
+          <!-- <p class="leaderboard-text">Top 10 Leaderboard</p>
+        <p class="loading-text">Loading...</p> -->
+          <p class="game-intro-text">
+            Jump between the obstacles by tapping on the screen
+          </p>
+        </div>
+      </section>
     </section>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-     <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> -->
 
-
-<!-- <script>
+    <!-- <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
     
@@ -64,10 +60,6 @@
 
 </script> -->
 
-<script src="script.js"></script>
-    
-    </body>
-    
-    
-    
+    <script src="script.js"></script>
+  </body>
 </html>
