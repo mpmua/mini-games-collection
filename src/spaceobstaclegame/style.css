@@ -218,38 +218,3 @@ body {
   margin-top: 0.2rem;
   color: #ffff00;
 }
-
-/* (A) WRONG ORIENTATION - SHOW MESSAGE HIDE CONTENT */
-@media only screen and (orientation: landscape) {
-  #turn {
-    display: block;
-  }
-  #page-wrap {
-    display: none;
-  }
-}
-
-/* (B) CORRECT ORIENTATION - SHOW CONTENT HIDE MESSAGE */
-@media only screen and (orientation: portrait) {
-  #turn {
-    display: none;
-  }
-  #page-wrap {
-    display: block;
-  }
-}
-
-#turn {
-  background-color: #5a5a5a;
-  height: 100vh;
-  width: 100vw;
-}
-
-#turn p {
-  font-size: 3rem;
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}

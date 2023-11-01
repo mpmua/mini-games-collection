@@ -5,3 +5,7 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
+
+body {
+  max-width: 900px !important;
+}
