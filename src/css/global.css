@@ -7,5 +7,7 @@
 }
 
 body {
-  max-width: 900px !important;
+  max-width: 800px !important;
+  margin-inline: auto;
+  background-color: rgb(91 116 161) !important;
 }
