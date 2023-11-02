@@ -1,4 +1,4 @@
-import { Capacitor } from "@capacitor/core";
+// import { Capacitor } from "@capacitor/core";
 
 let pageWrap = document.getElementById("page-wrap");
 let player = document.getElementById("player");
