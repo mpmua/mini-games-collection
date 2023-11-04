@@ -1,8 +1,14 @@
-// import { Capacitor } from "@capacitor/core";
+import { Capacitor } from "@capacitor/core";
+import satelliteImg from "./img/satellite.png";
+import rocketImg from "./img/rocket.png";
+import spaceImg from "./img/space-background.jpg";
 
 let pageWrap = document.getElementById("page-wrap");
 let player = document.getElementById("player");
 let playerImg = document.querySelector(".player-img");
+
+playerImg.src = rocketImg;
+pageWrap.style.backgroundImage = `url(${spaceImg})`;
 
 let playerScore;
 // let playerScoreElem = document.createElement("div");
@@ -154,6 +160,8 @@ let jumping = false;
 let playerJumpDistance = 0.02;
 let playerDropDistance = 0.3;
 
+let playerTop;
+
 function playerDrop() {
   if (defaultRotatePos < 90 && gameOver == true) {
     defaultRotatePos += 0.6;
@@ -230,7 +238,7 @@ function createObstacles() {
 
     let obstacleImg = document.createElement("img");
     obstacle.appendChild(obstacleImg);
-    obstacleImg.src = "img/satellite.png";
+    obstacleImg.src = satelliteImg;
 
     obstacle = document.createElement("div");
     obstacle.setAttribute("class", "obstacle");
@@ -241,7 +249,7 @@ function createObstacles() {
 
     obstacleImg = document.createElement("img");
     obstacle.appendChild(obstacleImg);
-    obstacleImg.src = "img/satellite.png";
+    obstacleImg.src = satelliteImg;
   }
 }
 
@@ -271,8 +279,12 @@ function startGame() {
         //   item.x += 120;
       });
     }, 100);
+    if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("click", jump);
+    } else if (Capacitor.getPlatform() === "android") {
+      document.addEventListener("touchstart", jump);
+    }
 
-    document.addEventListener("touchstart", jump);
     scoreListElem.style.visibility = "hidden";
     gameOverWrapper.style.visibility = "hidden";
     // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
@@ -348,22 +360,6 @@ function moveObstacles() {
 
     item.x -= obstacleSpeedVar;
     item.style.left = item.x + "%";
-
-    /* let yo = 0;
-    
-    if (yo == 0) {
-      
-       item.style.top -= (1 + "%");
-      
-    } else if (yo == 5) {
-      
-       item.style.top += randomHeightFunc2();
-      
-    } else if (yo == 10) {
-      
-      yo = 0;
-      
-    }*/
   });
 }
 
@@ -407,8 +403,9 @@ function displayHighScore() {
 }
 
 // localStorage.setItem("score", 0);
-var previousHighScore;
-var gameOver = false;
+let previousHighScore;
+let gameOver = false;
+let newGame = false;
 
 function gameOverFunc() {
   gameOver = true;

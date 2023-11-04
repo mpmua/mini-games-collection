@@ -1,3 +1,12 @@
+import { Capacitor } from "@capacitor/core";
+
+import ambulanceImg from "./img/ambulance.png";
+import carImg from "./img/car.png";
+import miniTruckImg from "./img/mini-truck.png";
+import miniVanImg from "./img/mini-van.png";
+import taxiImg from "./img/taxi.png";
+import truckImg from "./img/truck.png";
+
 const allDivs = document.getElementsByTagName("div");
 const allSections = document.getElementsByTagName("section");
 const allImgages = document.getElementsByTagName("img");
@@ -107,6 +116,8 @@ let roadLinesSpeed;
 // loadLeaderboard();
 // --------------END OF FIREBASE----------------
 
+playerElem.src = carImg;
+
 let scoreListElem = document.getElementById("scores-table");
 let maxCharText = document.querySelector(".max-char-text");
 let scoreListLi = document.createElement("li");
@@ -120,9 +131,10 @@ startButton.innerText = "Start";
 
 let gameOver = false;
 let restartGame = false;
-
+let allRandomObstacles;
+let randomObstacleWidthMinusGameWidth;
 startButton.addEventListener("click", function () {
-  let allRandomObstacles = document.querySelectorAll(".random-objects");
+  allRandomObstacles = document.querySelectorAll(".random-objects");
   allRandomObstacles.forEach(function (item) {
     item.y -= 140;
     item.style.left =
@@ -146,7 +158,11 @@ startButton.addEventListener("click", function () {
     gameOverWrapper.style.visibility = "hidden";
 
     gameOver = false;
-    document.addEventListener("touchmove", movePlayerCar);
+    if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("mousemove", movePlayerCar);
+    } else if (Capacitor.getPlatform() === "android") {
+      document.addEventListener("touchmove", movePlayerCar);
+    }
   });
 
   runFunctionsInterval = setInterval(runFunctions, 10);
@@ -155,7 +171,8 @@ startButton.addEventListener("click", function () {
 let runFunctionsInterval;
 
 let player = { speed: 5, score: 0 };
-
+let playerRect;
+let obstacleRect;
 function collisionDetection(player, obstacle) {
   playerRect = player.getBoundingClientRect();
   obstacleRect = obstacle.getBoundingClientRect();
@@ -171,7 +188,12 @@ function collisionDetection(player, obstacle) {
 // FUNCTION TO MOVE PLAYER HORIONTALLY
 function movePlayerCar(e) {
   let testing = gameWrapElem.offsetWidth - playerElem.offsetWidth;
-  let playerXPos = e.touches[0].pageX;
+  let playerXPos;
+  if (Capacitor.getPlatform() === "web") {
+    playerXPos = e.pageX;
+  } else if (Capacitor.getPlatform() === "android") {
+    playerXPos = e.touches[0].pageX;
+  }
 
   if (playerXPos < testing && playerXPos > 0) {
     playerElem.style.left = playerXPos + "px";
@@ -217,7 +239,7 @@ function moveRoadLines() {
 function generateObstacles() {
   let gameWrapElemWidth = gameWrapElem.getBoundingClientRect().width;
 
-  for (a = 0; a < 5; a++) {
+  for (let a = 0; a < 5; a++) {
     // CREATE OBSTACLES
     randomObstacle = document.createElement("div");
     randomObstacle.setAttribute("class", "random-objects");
@@ -243,21 +265,20 @@ function generateObstacles() {
   }
 }
 
-let imagesArray = [
-  "img/truck.png",
-  "img/ambulance.png",
-  "img/mini-truck.png",
-  "img/mini-van.png",
-  "img/taxi.png",
-];
+// let imagesArray = [
+//   "img/truck.png",
+//   "img/ambulance.png",
+//   "img/mini-truck.png",
+//   "img/mini-van.png",
+//   "img/taxi.png",
+// ];
+let imagesArray = [ambulanceImg, miniTruckImg, miniVanImg, taxiImg, truckImg];
 
 function generateRandomCarImg() {
   return imagesArray[Math.floor(Math.random() * imagesArray.length)];
 }
 
 generateObstacles();
-
-let allRandomObstacles;
 
 // MOVE OBSTACLES
 function moveObstacles() {
@@ -266,7 +287,6 @@ function moveObstacles() {
   allRandomObstacles.forEach(function (item) {
     if (collisionDetection(playerElem, item)) {
       gameOverFunc();
-      console.log("collision");
     }
 
     if (item.y >= 100) {
@@ -286,14 +306,11 @@ function runFunctions() {
     scoreCounter.innerText = `Score: ${player.score++}`;
   }
 }
-
+let latestHighScore;
 function highScoreCheckInitial() {
-  console.log(localStorage.getItem("top-down-game-score"));
-
   latestHighScore = localStorage.getItem("top-down-game-score");
 
   if (latestHighScore > 0) {
-    console.log("highScore > 0");
     highScoreElem.innerText = `High Score ${latestHighScore}`;
   } else {
     highScoreElem.innerText = `High Score `;
@@ -320,7 +337,7 @@ function displayHighScore() {
   latestHighScore = localStorage.getItem("top-down-game-score");
 
   if (latestHighScore > previousHighScore) {
-    highScore = latestHighScore;
+    let highScore = latestHighScore;
   }
 }
 
@@ -364,7 +381,6 @@ function gameOverFunc() {
 
   if (player.score > previousHighScore) {
     localStorage.setItem("top-down-game-score", player.score);
-    console.log(localStorage.getItem("top-down-game-score"));
   }
 
   displayHighScore();

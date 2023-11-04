@@ -1,4 +1,12 @@
-// import { Device } from "@capacitor/device";
+import { Device } from "@capacitor/device";
+
+import cactusImg from "./img/cactus.png";
+import cloudImg from "./img/cloud.png";
+import iceCreamVanImg from "./img/ice-cream-van.png";
+import miniCooperImg from "./img/mini-cooper.png";
+import redPlaneImg from "./img/red-plane.png";
+import yellowPlaneImg from "./img/yellow-plane.png";
+import swatVanImg from "./img/swat-van.png";
 
 const gameWrap = document.getElementById("game-wrap");
 const character = document.querySelector(".character-image");
@@ -17,32 +25,32 @@ const gameIntroText = document.querySelector(".game-intro-text");
 
 // --------------------FIREBASE----------------------
 
-// var userScoresList;
-// var scoreListLi;
-// var loadLeaderboardAgain;
-// var scoresArray = [];
+// let userScoresList;
+// let scoreListLi;
+// let loadLeaderboardAgain;
+// let scoresArray = [];
 
 // function loadLeaderboard() {
 
 // // This array stores the name+scores from firebase initially
 
 // // This array sorts the 'scoresArray' in order from highest to lowest scores
-// var finalScoresArray;
-// var loadingText = document.querySelector(".loading-text");
+// let finalScoresArray;
+// let loadingText = document.querySelector(".loading-text");
 
 //   userScoresList = firebase.database().ref("Ice Cream Run/scores");
 
 //   userScoresList.on('value', function gotData(userScoresList) {
 
-//   var scores = userScoresList.val();
-//   var keys = Object.keys(scores);
-//   var keysLength = keys.length;
+//   let scores = userScoresList.val();
+//   let keys = Object.keys(scores);
+//   let keysLength = keys.length;
 
 //     for (let i = 0; i < keys.length; i++) {
 
-//       var k = keys[i];
-//       var name = scores[k].name;
-//       var score = scores[k].score;
+//       let k = keys[i];
+//       let name = scores[k].name;
+//       let score = scores[k].score;
 
 //     scoresArray.push({
 
@@ -100,15 +108,19 @@ const gameIntroText = document.querySelector(".game-intro-text");
 
 // --------------END OF FIREBASE----------------
 
-var scoreListElem = document.getElementById("scores-table");
+character.src = iceCreamVanImg;
 
-var scoreListLi = document.createElement("li");
-var maxCharText = document.querySelector(".max-char-text");
-var touchAnywhereText = document.querySelector(".touch-anywhere-text");
-var roadLine;
+var scoreCounter;
+
+let scoreListElem = document.getElementById("scores-table");
+
+let scoreListLi = document.createElement("li");
+let maxCharText = document.querySelector(".max-char-text");
+let touchAnywhereText = document.querySelector(".touch-anywhere-text");
+let roadLine;
 
 // Create Start Button
-var startButton = document.createElement("button");
+let startButton = document.createElement("button");
 startButton.setAttribute("class", "start-button");
 scoreListElem.appendChild(startButton);
 startButton.innerText = "Start";
@@ -118,6 +130,8 @@ startButton.addEventListener("click", startGame);
 let roadLineSpeed = 0.7;
 let cactusSpeed = 0.5;
 let cloudSpeed = 0.1;
+
+let obstacleSpeed;
 
 // Increases speed of various objects as per below when the user score reaches certain milestones
 function increaseSpeed() {
@@ -137,17 +151,17 @@ function increaseSpeed() {
 setInterval(increaseSpeed, 10);
 
 function createClouds() {
-  for (b = 2; b < 6; b++) {
+  for (let b = 2; b < 6; b++) {
     let cloudWrapper = document.createElement("div");
     cloudWrapper.setAttribute("class", "cloud");
     skyElem.appendChild(cloudWrapper);
 
-    let cloudImg = document.createElement("img");
-    cloudImg.setAttribute("class", "cloud-img");
-    cloudImg.src = "img/cloud.png";
-    cloudWrapper.appendChild(cloudImg);
+    let cloudImgElem = document.createElement("img");
+    cloudImgElem.setAttribute("class", "cloud-img");
+    cloudImgElem.src = cloudImg;
+    cloudWrapper.appendChild(cloudImgElem);
 
-    // This positions out the clouds
+    // This spaces out the clouds
     cloudWrapper.x = b * 30;
     cloudWrapper.y = Math.floor(Math.random() * 30) + 20;
     cloudWrapper.style.left = cloudWrapper.x + "%";
@@ -200,16 +214,16 @@ function moveRoadLines() {
 }
 
 function createCactuses() {
-  for (c = 0; c < 4; c++) {
+  for (let c = 0; c < 4; c++) {
     // CREATE CACTUSES
     let cactus = document.createElement("div");
     cactus.setAttribute("class", "cactus");
     sandElem.appendChild(cactus);
 
-    let cactusImg = document.createElement("img");
-    cactusImg.setAttribute("class", "cactus-img");
-    cactusImg.src = "img/cactus.png";
-    cactus.appendChild(cactusImg);
+    let cactusImgElem = document.createElement("img");
+    cactusImgElem.setAttribute("class", "cactus-img");
+    cactusImgElem.src = cactusImg;
+    cactus.appendChild(cactusImgElem);
 
     // THIS WILL SEPERATE THE CACTUSES BY GIVING THEM DIFFERENT POSITIONS
     cactus.y = c * (Math.floor(Math.random() * 20) + 5);
@@ -228,7 +242,7 @@ function moveCactuses() {
     // Pushes the cactus back so it can be brought back onto the screen
     if (item.x < -5) {
       item.x = 120;
-      item.y = c * (Math.floor(Math.random() * 13) + 5);
+      item.y = 1 * (Math.floor(Math.random() * 13) + 5);
       item.style.top = item.y + "%";
     }
 
@@ -239,9 +253,9 @@ function moveCactuses() {
 }
 
 // The below two arrays store the enemy object images, the functions are used to pick a random image
-var planeArray = ["img/yellow-plane.png", "img/red-plane.png"];
+let planeArray = [redPlaneImg, yellowPlaneImg];
 
-var carArray = ["img/mini-cooper.png", "img/swat-van.png"];
+let carArray = [miniCooperImg, swatVanImg];
 
 function pickRandCar() {
   return carArray[Math.floor(Math.random() * carArray.length)];
@@ -250,6 +264,9 @@ function pickRandCar() {
 function pickRandPlane() {
   return planeArray[Math.floor(Math.random() * planeArray.length)];
 }
+
+let obstacleWrapper;
+let obstacleImg;
 
 function generateRandObstacles(obstacleWrapper, obstacleImg) {
   let randNumber1 = Math.floor(Math.random() * 4);
@@ -270,9 +287,6 @@ function generateRandObstacles(obstacleWrapper, obstacleImg) {
   obstacleWrapper.style.bottom = obstacleWrapper.y + "%";
 }
 
-var obstacleWrapper;
-var obstacleImg;
-
 function createObstacles() {
   for (let o = 4; o < 6; o++) {
     obstacleWrapper = document.createElement("div");
@@ -282,7 +296,7 @@ function createObstacles() {
 
     obstacleImg = document.createElement("img");
     obstacleImg.setAttribute("class", "obstacle-img");
-    obstacleImg.x = o * 90;
+    // obstacleImg.x = o * 90;
 
     generateRandObstacles(obstacleWrapper, obstacleImg);
     obstacleWrapper.appendChild(obstacleImg);
@@ -292,7 +306,8 @@ function createObstacles() {
 
 createObstacles();
 
-var allObstacles;
+let allObstacles;
+var gameOver;
 
 function moveObstacles() {
   allObstacles = document.querySelectorAll(".obstacle-wrapper");
@@ -310,10 +325,8 @@ function moveObstacles() {
     ) {
       gameOver = true;
 
-      for (image of allImgages) {
+      for (let image of allImgages) {
         image.style.animationPlayState = "paused";
-
-        console.log("animation paused");
       }
 
       gameOverFunc();
@@ -332,10 +345,10 @@ function moveObstacles() {
   });
 }
 
-var moveObstaclesInterval;
-var increaseScoreInterval;
+let moveObstaclesInterval;
+let increaseScoreInterval;
 
-var gameOver = false;
+gameOver = false;
 
 function restartGame() {
   gameOver = false;
@@ -355,7 +368,11 @@ function restartGame() {
 }
 
 function startGame() {
-  document.body.ontouchstart = playerJump;
+  if (Capacitor.getPlatform() === "web") {
+    document.addEventListener("click", playerJump);
+  } else if (Capacitor.getPlatform() === "android") {
+    document.addEventListener("touchstart", playerJump);
+  }
 
   obstacleSpeed = 1.2;
 
@@ -373,8 +390,6 @@ function startGame() {
 
 function playerJump() {
   document.body.ontouchstart = null;
-
-  console.log("playerJump executed");
 
   if (gameOver == false) {
     if (character.classList != "animate-jump") {
@@ -411,7 +426,7 @@ function playerJump() {
 
 // --------------FIREBASE-------------------
 
-// var userScore
+// let userScore
 
 // function submitScore() {
 
@@ -454,9 +469,9 @@ function playerJump() {
 
 // -------------------END FIREBASE--------------------
 
-var scoreCounter = 0;
-var highScore;
-var latestHighScore;
+scoreCounter = 0;
+let highScore;
+let latestHighScore;
 
 function increaseScore() {
   currentScoreElem.innerText = `Score ${scoreCounter++}`;
@@ -466,7 +481,6 @@ function highScoreCheckInitial() {
   latestHighScore = localStorage.getItem("ice-cream-game-score");
 
   if (latestHighScore > 0) {
-    console.log("highScore > 0");
     highScoreElem.innerText = `High Score ${latestHighScore}`;
   } else {
     highScoreElem.innerText = `High Score `;
@@ -475,10 +489,10 @@ function highScoreCheckInitial() {
 
 // Create score and high score elements
 
-var currentScoreElem = document.createElement("div");
+let currentScoreElem = document.createElement("div");
 score.appendChild(currentScoreElem);
 
-var highScoreElem = document.createElement("div");
+let highScoreElem = document.createElement("div");
 score.appendChild(highScoreElem);
 
 currentScoreElem.innerText = `Score 0`;
@@ -493,9 +507,9 @@ function displayHighScore() {
   }
 }
 
-var previousHighScore;
+let previousHighScore;
 
-var gameOverFunc = function () {
+let gameOverFunc = function () {
   gameIntroText.style.display = "none";
   scoreListElem.removeChild(startButton);
   scoreListElem.insertBefore(startButton, scoreListElem.childNodes[0]);
@@ -535,9 +549,9 @@ var gameOverFunc = function () {
   highScoreCheckInitial();
 };
 
-var moveCloudsInterval;
-var moveRoadLinesInterval;
-var moveCactusesInterval;
+let moveCloudsInterval;
+let moveRoadLinesInterval;
+let moveCactusesInterval;
 
 function runStartupFunctions() {
   if (gameOver == false) {

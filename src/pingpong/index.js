@@ -1,3 +1,5 @@
+import { Capacitor } from "@capacitor/core";
+
 const pageWrap = document.querySelector("#page-wrap");
 const scoreDiv = document.querySelector(".score-div");
 const gameStartScreen = document.querySelector(".game-start-screen");
@@ -28,9 +30,15 @@ function displayGameStartScreen() {
   gameStartText.innerHTML = "Keep the ball in play";
 
   startBtn.addEventListener("click", () => {
-    document.addEventListener("touchmove", movePlayerHandle, {
-      passive: false,
-    });
+    if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("mousemove", movePlayerHandle, {
+        passive: false,
+      });
+    } else if (Capacitor.getPlatform() === "android") {
+      document.addEventListener("touchmove", movePlayerHandle, {
+        passive: false,
+      });
+    }
 
     gameStartScreen.style.display = "none";
     ballCurrentPosition = [190, 200];
@@ -298,5 +306,10 @@ function movePlayerHandle(e) {
   e.preventDefault();
   e.stopPropagation();
   let playerHandleAdjustment = playerHandle.offsetWidth / 2;
-  playerHandle.style.left = e.touches[0].pageX - playerHandleAdjustment + "px";
+  if (Capacitor.getPlatform() === "web") {
+    playerHandle.style.left = e.pageX - playerHandleAdjustment + "px";
+  } else if (Capacitor.getPlatform() === "android") {
+    playerHandle.style.left =
+      e.touches[0].pageX - playerHandleAdjustment + "px";
+  }
 }

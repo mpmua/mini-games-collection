@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Gloria";
-  src: url("fonts/GloriaHallelujah-Regular.ttf");
+  src: url("./font/GloriaHallelujah-Regular.ttf");
 }
 
 body {
@@ -33,6 +33,7 @@ body {
   padding-top: 0.3rem;
   font-size: 0.8rem;
   z-index: 30;
+  line-height: 1rem;
 }
 
 .touch-anywhere-text {
