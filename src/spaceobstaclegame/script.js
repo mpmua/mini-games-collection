@@ -126,14 +126,14 @@ startButton.innerText = "Start";
 
 let scoreCount = 0;
 
-let currentScoreElem = document.createElement("div");
-pageWrap.appendChild(currentScoreElem);
-currentScoreElem.setAttribute("class", "current-score");
-currentScoreElem.innerHTML = "Score ";
+let currentScoreElem = document.querySelector(".score");
+// pageWrap.appendChild(currentScoreElem);
+// currentScoreElem.setAttribute("class", "score");
+// currentScoreElem.innerHTML = "Score ";
 
-let highScoreElem = document.createElement("div");
-pageWrap.appendChild(highScoreElem);
-highScoreElem.setAttribute("class", "high-score");
+let highScoreElem = document.querySelector(".high-score");
+// pageWrap.appendChild(highScoreElem);
+// highScoreElem.setAttribute("class", "high-score");
 
 scoreListElem.appendChild(startButton);
 

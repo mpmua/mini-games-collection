@@ -16,6 +16,10 @@ body {
   background: black;
 }
 
+.score {
+  color: #fff !important;
+}
+
 .game-start-screen {
   position: absolute;
   top: 50%;
@@ -39,12 +43,6 @@ body {
   margin: 0.3rem auto 0 auto;
   border-radius: 0.3rem;
   background: yellow;
-}
-
-.score-div {
-  color: #fff;
-  padding: 0.3rem;
-  font-size: 0.8rem;
 }
 
 .ball {

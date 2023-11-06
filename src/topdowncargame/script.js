@@ -12,7 +12,7 @@ const allSections = document.getElementsByTagName("section");
 const allImgages = document.getElementsByTagName("img");
 const playerElem = document.querySelector(".player");
 const objectsWrapper = document.querySelector(".objects-wrapper");
-const gameWrapElem = document.querySelector("#game-wrap");
+const pageWrap = document.querySelector("#page-wrap");
 const initialsInputElem = document.querySelector(".initials-input");
 const gameOverWrapper = document.querySelector(".game-over-wrapper");
 const submitScoreText = document.querySelector(".submit-score-text");
@@ -187,7 +187,7 @@ function collisionDetection(player, obstacle) {
 
 // FUNCTION TO MOVE PLAYER HORIONTALLY
 function movePlayerCar(e) {
-  let testing = gameWrapElem.offsetWidth - playerElem.offsetWidth;
+  let testing = pageWrap.offsetWidth - playerElem.offsetWidth;
   let playerXPos;
   if (Capacitor.getPlatform() === "web") {
     playerXPos = e.pageX;
@@ -209,14 +209,14 @@ function generateRoadLines() {
     roadLine.style.left = "30%";
     roadLine.y = l * 14;
     roadLine.style.top = +roadLine.y + "%";
-    gameWrapElem.appendChild(roadLine);
+    pageWrap.appendChild(roadLine);
 
     roadLine = document.createElement("div");
     roadLine.setAttribute("class", "road-line");
     roadLine.style.left = "70%";
     roadLine.y = l * 14;
     roadLine.style.top = +roadLine.y + "%";
-    gameWrapElem.appendChild(roadLine);
+    pageWrap.appendChild(roadLine);
   }
 }
 
@@ -237,13 +237,13 @@ function moveRoadLines() {
 }
 
 function generateObstacles() {
-  let gameWrapElemWidth = gameWrapElem.getBoundingClientRect().width;
+  // let gameWrapElemWidth = pageWrap.getBoundingClientRect().width;
 
   for (let a = 0; a < 5; a++) {
     // CREATE OBSTACLES
     randomObstacle = document.createElement("div");
     randomObstacle.setAttribute("class", "random-objects");
-    gameWrapElem.appendChild(randomObstacle);
+    pageWrap.appendChild(randomObstacle);
 
     let randomCarImg = document.createElement("img");
     randomCarImg.setAttribute("class", "random-car-img");
@@ -252,7 +252,7 @@ function generateObstacles() {
 
     // CALCULATIONS TO ENSURE OBSTACLES DONT GO PAST WIDTH OF GAME SCREEN
     randomObstacleWidthMinusGameWidth =
-      gameWrapElem.offsetWidth - randomObstacle.offsetWidth;
+      pageWrap.offsetWidth - randomObstacle.offsetWidth;
     randomObstaclePos = Math.floor(
       Math.random() * randomObstacleWidthMinusGameWidth
     );
@@ -322,14 +322,14 @@ function highScoreCheckInitial() {
 /*let currentScoreElem = document.createElement("div");
 scoreCounter.appendChild(currentScoreElem);*/
 
-let scoreCounter = document.createElement("div");
-scoreCounter.setAttribute("class", "score-counter");
-gameWrapElem.appendChild(scoreCounter);
+let scoreCounter = document.querySelector(".score");
+// scoreCounter.setAttribute("class", "score-counter");
+// pageWrap.appendChild(scoreCounter);
 scoreCounter.innerText = `Score: 0`;
 
-let highScoreElem = document.createElement("div");
-highScoreElem.setAttribute("class", "score-counter");
-gameWrapElem.appendChild(highScoreElem);
+let highScoreElem = document.querySelector(".high-score");
+// highScoreElem.setAttribute("class", "score-counter");
+// pageWrap.appendChild(highScoreElem);
 
 highScoreCheckInitial();
 

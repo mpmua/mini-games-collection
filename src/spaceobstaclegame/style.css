@@ -21,23 +21,8 @@ body {
   overflow: hidden;
 }
 
-.current-score,
-.high-score {
-  padding: 0.2rem;
-  font-size: 0.8rem;
-  position: relative;
+.score-wrap {
   color: #fff;
-  z-index: 10;
-}
-
-.score {
-  font-size: 2rem;
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  z-index: 10;
 }
 
 #player {

@@ -1,7 +1,7 @@
 import { Capacitor } from "@capacitor/core";
 
 const pageWrap = document.querySelector("#page-wrap");
-const scoreDiv = document.querySelector(".score-div");
+const scoreDiv = document.querySelector(".score");
 const gameStartScreen = document.querySelector(".game-start-screen");
 const gameStartText = document.querySelector(".game-start-text");
 const startBtn = document.querySelector(".start-btn");

@@ -309,6 +309,46 @@ createObstacles();
 let allObstacles;
 var gameOver;
 
+let gameOverFunc = function () {
+  gameIntroText.style.display = "none";
+  scoreListElem.removeChild(startButton);
+  scoreListElem.insertBefore(startButton, scoreListElem.childNodes[0]);
+  startButton.style.backgroundColor = "yellow";
+  //  startButton.innerHTML = `<i class="fas fa-undo-alt"></i>`;
+  // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
+  // document.querySelector(".score-list-li:nth-child(4)").style.backgroundColor = "#e2c210";
+  // document.querySelector(".score-list-li:nth-child(5)").style.backgroundColor = "silver";
+  // document.querySelector(".score-list-li:nth-child(6)").style.backgroundColor = "#CD7F32";
+  clearInterval(moveCloudsInterval);
+  clearInterval(moveRoadLinesInterval);
+  clearInterval(moveCactusesInterval);
+  clearInterval(moveObstaclesInterval);
+  clearInterval(increaseScoreInterval);
+  roadLineSpeed = 0.7;
+  cactusSpeed = 0.5;
+  cloudSpeed = 0.1;
+  startButton.innerText = "Restart";
+  startButton.addEventListener("click", restartGame);
+  //  submitScoreText.innerHTML = `Submit Score?`;
+
+  gameOverWrapper.style.visibility = "visible";
+  // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
+  //  scoreSubmitButton.style.visibility = "visible";
+  //  initialsInputElem.style.visibility = "visible";
+  //  maxCharText.style.visibility = "visible";
+  //  scoreListElem.style.borderTopLeftRadius = "0";
+  //  scoreListElem.style.borderTopRightRadius = "0";
+  scoreListElem.style.visibility = "visible";
+  previousHighScore = localStorage.getItem("ice-cream-game-score");
+
+  if (scoreCounter > previousHighScore) {
+    localStorage.setItem("ice-cream-game-score", scoreCounter - 1);
+  }
+
+  displayHighScore();
+  highScoreCheckInitial();
+};
+
 function moveObstacles() {
   allObstacles = document.querySelectorAll(".obstacle-wrapper");
 
@@ -473,6 +513,14 @@ scoreCounter = 0;
 let highScore;
 let latestHighScore;
 
+// Create score and high score elements
+
+let currentScoreElem = document.querySelector(".score");
+// score.appendChild(currentScoreElem);
+
+let highScoreElem = document.querySelector(".high-score");
+// score.appendChild(highScoreElem);
+
 function increaseScore() {
   currentScoreElem.innerText = `Score ${scoreCounter++}`;
 }
@@ -487,14 +535,6 @@ function highScoreCheckInitial() {
   }
 }
 
-// Create score and high score elements
-
-let currentScoreElem = document.createElement("div");
-score.appendChild(currentScoreElem);
-
-let highScoreElem = document.createElement("div");
-score.appendChild(highScoreElem);
-
 currentScoreElem.innerText = `Score 0`;
 
 highScoreCheckInitial();
@@ -508,46 +548,6 @@ function displayHighScore() {
 }
 
 let previousHighScore;
-
-let gameOverFunc = function () {
-  gameIntroText.style.display = "none";
-  scoreListElem.removeChild(startButton);
-  scoreListElem.insertBefore(startButton, scoreListElem.childNodes[0]);
-  startButton.style.backgroundColor = "yellow";
-  //  startButton.innerHTML = `<i class="fas fa-undo-alt"></i>`;
-  // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
-  // document.querySelector(".score-list-li:nth-child(4)").style.backgroundColor = "#e2c210";
-  // document.querySelector(".score-list-li:nth-child(5)").style.backgroundColor = "silver";
-  // document.querySelector(".score-list-li:nth-child(6)").style.backgroundColor = "#CD7F32";
-  clearInterval(moveCloudsInterval);
-  clearInterval(moveRoadLinesInterval);
-  clearInterval(moveCactusesInterval);
-  clearInterval(moveObstaclesInterval);
-  clearInterval(increaseScoreInterval);
-  roadLineSpeed = 0.7;
-  cactusSpeed = 0.5;
-  cloudSpeed = 0.1;
-  startButton.innerText = "Restart";
-  startButton.addEventListener("click", restartGame);
-  //  submitScoreText.innerHTML = `Submit Score?`;
-
-  gameOverWrapper.style.visibility = "visible";
-  // BELOW HAS BEEN COMMENTED OUT TO REMOVE LEADERBOARD
-  //  scoreSubmitButton.style.visibility = "visible";
-  //  initialsInputElem.style.visibility = "visible";
-  //  maxCharText.style.visibility = "visible";
-  //  scoreListElem.style.borderTopLeftRadius = "0";
-  //  scoreListElem.style.borderTopRightRadius = "0";
-  scoreListElem.style.visibility = "visible";
-  previousHighScore = localStorage.getItem("ice-cream-game-score");
-
-  if (scoreCounter > previousHighScore) {
-    localStorage.setItem("ice-cream-game-score", scoreCounter - 1);
-  }
-
-  displayHighScore();
-  highScoreCheckInitial();
-};
 
 let moveCloudsInterval;
 let moveRoadLinesInterval;

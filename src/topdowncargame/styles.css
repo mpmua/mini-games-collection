@@ -1,7 +1,7 @@
 body {
 }
 
-#game-wrap {
+#page-wrap {
   position: relative;
   margin: auto;
   height: 100vh;
@@ -25,14 +25,8 @@ body {
   background-color: green;
 }
 
-.score-counter {
-  margin: 0.2rem;
-  font-size: 0.8rem;
+.score-wrap {
   color: #fff;
-  position: relative;
-  left: 0;
-  top: 0;
-  z-index: 20;
 }
 
 .road-line {
