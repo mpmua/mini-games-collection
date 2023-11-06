@@ -12,6 +12,19 @@ body {
   background-color: rgb(91 116 161) !important;
 }
 
+.back-btn-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-left: 0.3rem;
+  padding-top: 0.3rem;
+  z-index: 30;
+}
+
+.back-btn {
+  width: 25px;
+}
+
 .score-wrap {
   text-align: right;
   position: absolute;
