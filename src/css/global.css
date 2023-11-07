@@ -12,8 +12,13 @@ body {
   background-color: rgb(91 116 161) !important;
 }
 
+.back-btn-and-score-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 .back-btn-wrapper {
-  position: absolute;
+  /* position: absolute; */
   left: 3px;
   top: 7px;
   padding-left: 0.3rem;
@@ -27,7 +32,7 @@ body {
 
 .score-wrap {
   text-align: right;
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   top: 0;
   padding-right: 0.3rem;

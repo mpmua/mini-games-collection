@@ -79,6 +79,14 @@ function moveBall() {
 
   checkForCollisions(ballSpeed);
 
+  if (
+    playerHandle.getBoundingClientRect().right >
+    pageWrap.getBoundingClientRect().right
+  ) {
+    testing = true;
+    console.log("EXCEEDED");
+  }
+
   ballCurrentPosition[0] += xDirection;
   ballCurrentPosition[1] += yDirection;
 
@@ -303,8 +311,13 @@ function changeDirection(ballSpeed) {
     yDirection = ballSpeed;
   }
 }
-
+var testing;
 function movePlayerHandle(e) {
+  if (testing) {
+    let position = e.pageX;
+    playerHandle.style.right = position + "px";
+    console.log(e.pageX);
+  }
   e.preventDefault();
   e.stopPropagation();
   let playerHandleAdjustment = playerHandle.offsetWidth / 2;

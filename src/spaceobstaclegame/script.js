@@ -3,9 +3,11 @@ import satelliteImg from "./img/satellite.png";
 import rocketImg from "./img/rocket.png";
 import spaceImg from "./img/space-background.jpg";
 
-let pageWrap = document.getElementById("page-wrap");
-let player = document.getElementById("player");
-let playerImg = document.querySelector(".player-img");
+const pageWrap = document.getElementById("page-wrap");
+const currentScoreElem = document.querySelector(".score");
+const highScoreElem = document.querySelector(".high-score");
+const player = document.getElementById("player");
+const playerImg = document.querySelector(".player-img");
 
 playerImg.src = rocketImg;
 pageWrap.style.backgroundImage = `url(${spaceImg})`;
@@ -21,15 +23,15 @@ const gameIntroText = document.querySelector(".game-intro-text");
 const gameOverWrapper = document.querySelector(".game-over-wrapper");
 const submitScoreText = document.querySelector(".submit-score-text");
 const scoreSubmitButton = document.querySelector(".score-submit-button");
-let initialsInputElem = document.querySelector(".initials-input");
+const initialsInputElem = document.querySelector(".initials-input");
 
-var scoreListElem = document.getElementById("scores-table");
-var maxCharText = document.querySelector(".max-char-text");
+const scoreListElem = document.getElementById("scores-table");
+const maxCharText = document.querySelector(".max-char-text");
 
-var scoreListLi = document.createElement("li");
+const scoreListLi = document.createElement("li");
 
 // Create start button
-var startButton = document.createElement("button");
+const startButton = document.createElement("button");
 startButton.setAttribute("class", "start-button");
 startButton.innerText = "Start";
 
@@ -125,15 +127,6 @@ startButton.innerText = "Start";
 // Create high score element and live score counter
 
 let scoreCount = 0;
-
-let currentScoreElem = document.querySelector(".score");
-// pageWrap.appendChild(currentScoreElem);
-// currentScoreElem.setAttribute("class", "score");
-// currentScoreElem.innerHTML = "Score ";
-
-let highScoreElem = document.querySelector(".high-score");
-// pageWrap.appendChild(highScoreElem);
-// highScoreElem.setAttribute("class", "high-score");
 
 scoreListElem.appendChild(startButton);
 

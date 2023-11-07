@@ -24,6 +24,11 @@ body {
   overflow: hidden;
 }
 
+.back-btn-and-score-wrapper {
+  position: absolute;
+  width: 100%;
+}
+
 .touch-anywhere-text {
   position: absolute;
   opacity: 1;
