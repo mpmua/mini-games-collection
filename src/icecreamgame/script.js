@@ -12,6 +12,8 @@ const gameWrap = document.getElementById("game-wrap");
 const character = document.querySelector(".character-image");
 const skyElem = document.querySelector(".sky");
 const score = document.querySelector(".score");
+const currentScoreElem = document.querySelector(".score");
+const highScoreElem = document.querySelector(".high-score");
 const sandElem = document.querySelector(".sand");
 const roadElement = document.querySelector(".road");
 const gameOverWrapper = document.querySelector(".game-over-wrapper");
@@ -515,10 +517,8 @@ let latestHighScore;
 
 // Create score and high score elements
 
-let currentScoreElem = document.querySelector(".score");
 // score.appendChild(currentScoreElem);
 
-let highScoreElem = document.querySelector(".high-score");
 // score.appendChild(highScoreElem);
 
 function increaseScore() {

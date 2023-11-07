@@ -14,15 +14,15 @@ body {
 
 .back-btn-wrapper {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 3px;
+  top: 7px;
   padding-left: 0.3rem;
   padding-top: 0.3rem;
   z-index: 30;
 }
 
 .back-btn {
-  width: 25px;
+  width: 21px;
 }
 
 .score-wrap {

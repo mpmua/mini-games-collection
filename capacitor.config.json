@@ -1,6 +1,6 @@
 {
   "appId": "com.minigames.myapp",
-  "appName": "Mini Games Collection",
+  "appName": "120hz Mini Games Collection",
   "bundledWebRuntime": false,
   "webDir": "dist",
   "plugins": {

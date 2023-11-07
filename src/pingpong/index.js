@@ -2,6 +2,8 @@ import { Capacitor } from "@capacitor/core";
 
 const pageWrap = document.querySelector("#page-wrap");
 const scoreDiv = document.querySelector(".score");
+const currentScoreElem = document.querySelector(".score");
+const highScoreElem = document.querySelector(".high-score");
 const gameStartScreen = document.querySelector(".game-start-screen");
 const gameStartText = document.querySelector(".game-start-text");
 const startBtn = document.querySelector(".start-btn");
@@ -56,7 +58,7 @@ let storedHighScore = localStorage.getItem("highScore");
 displayGameStartScreen();
 
 let userScore = 0;
-scoreDiv.innerHTML = `Score ${userScore} <br>
+currentScoreElem.innerHTML = `Score ${userScore} <br>
                         High Score: ${storedHighScore}`;
 
 function moveEnemyHandle(ballXPos) {
@@ -72,7 +74,7 @@ let ballDirection;
 
 function moveBall() {
   userScore++;
-  scoreDiv.innerHTML = `Score ${userScore} <br>
+  currentScoreElem.innerHTML = `Score ${userScore} <br>
                         High Score: ${storedHighScore}`;
 
   checkForCollisions(ballSpeed);
@@ -198,7 +200,7 @@ function checkForCollisions(ballSpeed) {
     if (userScore > localStorage.getItem("highScore")) {
       localStorage.setItem("highScore", userScore);
       storedHighScore = localStorage.getItem("highScore");
-      scoreDiv.innerHTML = `Score ${userScore} <br>
+      currentScoreElem.innerHTML = `Score ${userScore} <br>
                         High Score: ${storedHighScore}`;
     }
 
