@@ -79,14 +79,6 @@ function moveBall() {
 
   checkForCollisions(ballSpeed);
 
-  if (
-    playerHandle.getBoundingClientRect().right >
-    pageWrap.getBoundingClientRect().right
-  ) {
-    testing = true;
-    console.log("EXCEEDED");
-  }
-
   ballCurrentPosition[0] += xDirection;
   ballCurrentPosition[1] += yDirection;
 
@@ -312,19 +304,49 @@ function changeDirection(ballSpeed) {
   }
 }
 var testing;
+console.log(pageWrap.offsetWidth);
 function movePlayerHandle(e) {
-  if (testing) {
-    let position = e.pageX;
-    playerHandle.style.right = position + "px";
-    console.log(e.pageX);
-  }
-  e.preventDefault();
-  e.stopPropagation();
-  let playerHandleAdjustment = playerHandle.offsetWidth / 2;
+  // let testing = pageWrap.offsetWidth - playerHandle.offsetWidth;
+  testing = document.body.offsetWidth - playerHandle.offsetWidth;
+
+  let playerXPos;
   if (Capacitor.getPlatform() === "web") {
-    playerHandle.style.left = e.pageX - playerHandleAdjustment + "px";
+    playerXPos = e.pageX;
   } else if (Capacitor.getPlatform() === "android") {
-    playerHandle.style.left =
-      e.touches[0].pageX - playerHandleAdjustment + "px";
+    playerXPos = e.touches[0].pageX;
   }
+
+  // if (playerXPos < testing && playerXPos > 0) {
+
+  if (
+    playerHandle.getBoundingClientRect().right <
+      pageWrap.getBoundingClientRect().right &&
+    playerXPos > 0
+  ) {
+    console.log(playerXPos);
+    playerHandle.style.left = playerXPos + "px";
+  }
+
+  // if (
+  //   playerHandle.getBoundingClientRect().right >
+  //   pageWrap.getBoundingClientRect().right
+  // ) {
+  //   testing = true;
+
+  //   console.log("EXCEEDED");
+  // }
+  // // if (testing) {
+  // //   let position = e.pageX;
+  // //   playerHandle.style.right = position + "px";
+  // //   console.log(e.pageX);
+  // // }
+  // e.preventDefault();
+  // e.stopPropagation();
+  // let playerHandleAdjustment = playerHandle.offsetWidth / 2;
+  // if (Capacitor.getPlatform() === "web") {
+  //   playerHandle.style.left = e.pageX - playerHandleAdjustment + "px";
+  // } else if (Capacitor.getPlatform() === "android") {
+  //   playerHandle.style.left =
+  //     e.touches[0].pageX - playerHandleAdjustment + "px";
+  // }
 }
