@@ -5,13 +5,21 @@
   user-select: none;
 }
 
+html {
+}
+
 body {
+  /*  height: 100vh;
+    width: 100vw;*/
 }
 
 #page-wrap {
-  overflow: hidden;
-  /* position: relative; */
   height: 100vh;
+  width: 100%;
+  /* max-width: 400px; */
+  margin-inline: auto;
+  position: relative;
+  border: 1px solid red;
   background: black;
 }
 
@@ -54,20 +62,24 @@ body {
 }
 
 .player-handle {
-  position: absolute;
   bottom: 10%;
   background-color: blue;
 }
 
 .enemy-handle {
-  position: absolute;
   top: 10%;
   background-color: red;
 }
 
 .player-handle,
 .enemy-handle {
+  position: absolute;
   border-radius: 0.3rem;
-  width: 20%;
-  height: 2%;
+  /* width: clamp(4.375rem, 2.2003rem + 10.2339vw, 8.75rem);*/
+  width: 60px;
+  height: 15px;
+
+  /*    height: 15px;
+    width: 140px;
+    height: 20px;*/
 }

@@ -27,16 +27,18 @@ function storedHighScoreCheck() {
 
 storedHighScoreCheck();
 
-// // Game Start And Game Over Screen
 function displayGameStartScreen() {
   gameStartText.innerHTML = "Keep the ball in play";
 
   startBtn.addEventListener("click", () => {
     if (Capacitor.getPlatform() === "web") {
+      // "mousemove"
+      // document.addEventListener("touchmove", movePlayerHandle, {
       document.addEventListener("mousemove", movePlayerHandle, {
         passive: false,
       });
     } else if (Capacitor.getPlatform() === "android") {
+      console.log("platform is android");
       document.addEventListener("touchmove", movePlayerHandle, {
         passive: false,
       });
@@ -63,7 +65,8 @@ currentScoreElem.innerHTML = `Score ${userScore} <br>
 
 function moveEnemyHandle(ballXPos) {
   let pageWidth = pageWrap.offsetWidth - enemyHandle.offsetWidth;
-  enemyHandle.style.left = ballXPos - 40 + "px";
+  let enemyHandleWidthHalf = enemyHandle.offsetWidth / 2;
+  enemyHandle.style.left = ballXPos - enemyHandleWidthHalf + "px";
 }
 
 let southWest;
@@ -87,34 +90,21 @@ function moveBall() {
 
   moveEnemyHandle(ballCurrentPosition[0]);
 
-  if (
-    userScore == 1000 ||
-    userScore == 2000 ||
-    userScore == 3000 ||
-    userScore == 4000 ||
-    userScore == 5000 ||
-    userScore == 6000 ||
-    userScore == 7000 ||
-    userScore == 8000 ||
-    userScore == 9000 ||
-    userScore == 10000
-  ) {
-    if (ballDirection == "southWest") {
+  if (userScore % 1000 === 0 && userScore > 0 && userScore <= 10000) {
+    if (ballDirection === "southWest") {
       ballSpeed += 0.5;
       xDirection = -ballSpeed;
       yDirection = ballSpeed;
-    } else if (ballDirection == "northWest") {
+    } else if (ballDirection === "northWest") {
       ballSpeed += 0.5;
       xDirection = -ballSpeed;
       yDirection = -ballSpeed;
-    } else if (ballDirection == "northEast") {
+    } else if (ballDirection === "northEast") {
       ballSpeed += 0.5;
-
       xDirection = ballSpeed;
       yDirection = -ballSpeed;
-    } else if (ballDirection == "southEast") {
+    } else if (ballDirection === "southEast") {
       ballSpeed += 0.5;
-
       xDirection = ballSpeed;
       yDirection = ballSpeed;
     }
@@ -122,6 +112,8 @@ function moveBall() {
 }
 
 function checkForCollisions(ballSpeed) {
+  // console.log(pageWrap.getBoundingClientRect().width);
+  console.log(ball.getBoundingClientRect().left);
   if (
     ball.getBoundingClientRect().bottom >=
       playerHandle.getBoundingClientRect().top &&
@@ -210,7 +202,7 @@ function checkForCollisions(ballSpeed) {
 
   if (
     ballCurrentPosition[0] + ball.offsetWidth >=
-      pageWrap.getBoundingClientRect().right &&
+      pageWrap.getBoundingClientRect().width &&
     xDirection == ballSpeed &&
     yDirection == ballSpeed
   ) {
@@ -222,7 +214,7 @@ function checkForCollisions(ballSpeed) {
 
   if (
     ballCurrentPosition[0] + ball.offsetWidth >=
-      pageWrap.getBoundingClientRect().right &&
+      pageWrap.getBoundingClientRect().width &&
     xDirection == ballSpeed &&
     yDirection == -ballSpeed
   ) {
@@ -234,7 +226,7 @@ function checkForCollisions(ballSpeed) {
   }
 
   if (
-    ballCurrentPosition[0] <= pageWrap.getBoundingClientRect().left &&
+    ballCurrentPosition[0] <= 0 &&
     xDirection == -ballSpeed &&
     yDirection == -ballSpeed
   ) {
@@ -245,7 +237,7 @@ function checkForCollisions(ballSpeed) {
   }
 
   if (
-    ballCurrentPosition[0] <= pageWrap.getBoundingClientRect().left &&
+    ballCurrentPosition[0] <= 0 &&
     xDirection == -ballSpeed &&
     yDirection == ballSpeed
   ) {
@@ -303,50 +295,28 @@ function changeDirection(ballSpeed) {
     yDirection = ballSpeed;
   }
 }
-var testing;
-console.log(pageWrap.offsetWidth);
-function movePlayerHandle(e) {
-  // let testing = pageWrap.offsetWidth - playerHandle.offsetWidth;
-  testing = document.body.offsetWidth - playerHandle.offsetWidth;
 
+function movePlayerHandle(e) {
+  let pageWidth = pageWrap.offsetWidth - playerHandle.offsetWidth;
+  let playerHandleMiddlePoint = playerHandle.offsetWidth / 2;
+  console.log(pageWrap.offsetWidth);
   let playerXPos;
   if (Capacitor.getPlatform() === "web") {
     playerXPos = e.pageX;
+    // playerXPos = e.touches[0].pageX - playerHandleMiddlePoint;
   } else if (Capacitor.getPlatform() === "android") {
-    playerXPos = e.touches[0].pageX;
+    playerXPos = e.touches[0].pageX - playerHandleMiddlePoint;
   }
 
-  // if (playerXPos < testing && playerXPos > 0) {
-
-  if (
-    playerHandle.getBoundingClientRect().right <
-      pageWrap.getBoundingClientRect().right &&
-    playerXPos > 0
-  ) {
-    console.log(playerXPos);
+  if (playerXPos <= pageWidth && playerXPos > 0) {
     playerHandle.style.left = playerXPos + "px";
+    // console.log("playerXPos");
+    // console.log(playerXPos);
+    // console.log("pageWrap.getBoundingClientRect().left");
+    // console.log(pageWrap.clientWidth);
+    /*        console.log("playerHandle.getBoundingClientRect().right");
+        console.log(playerHandle.getBoundingClientRect().right);
+        console.log("document.body.offsetWidth");
+        console.log(document.body.offsetWidth);*/
   }
-
-  // if (
-  //   playerHandle.getBoundingClientRect().right >
-  //   pageWrap.getBoundingClientRect().right
-  // ) {
-  //   testing = true;
-
-  //   console.log("EXCEEDED");
-  // }
-  // // if (testing) {
-  // //   let position = e.pageX;
-  // //   playerHandle.style.right = position + "px";
-  // //   console.log(e.pageX);
-  // // }
-  // e.preventDefault();
-  // e.stopPropagation();
-  // let playerHandleAdjustment = playerHandle.offsetWidth / 2;
-  // if (Capacitor.getPlatform() === "web") {
-  //   playerHandle.style.left = e.pageX - playerHandleAdjustment + "px";
-  // } else if (Capacitor.getPlatform() === "android") {
-  //   playerHandle.style.left =
-  //     e.touches[0].pageX - playerHandleAdjustment + "px";
-  // }
 }
