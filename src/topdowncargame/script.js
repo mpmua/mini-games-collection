@@ -158,10 +158,15 @@ startButton.addEventListener("click", function () {
     gameOverWrapper.style.visibility = "hidden";
 
     gameOver = false;
-    if (Capacitor.getPlatform() === "web") {
-      document.addEventListener("mousemove", movePlayerCar);
-    } else if (Capacitor.getPlatform() === "android") {
+    // if (Capacitor.getPlatform() === "web") {
+    //   document.addEventListener("mousemove", movePlayerCar);
+    // } else if (Capacitor.getPlatform() === "android") {
+    //   document.addEventListener("touchmove", movePlayerCar);
+    // }
+    if (Capacitor.isNativePlatform()) {
       document.addEventListener("touchmove", movePlayerCar);
+    } else if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("mousemove", movePlayerCar);
     }
   });
 
