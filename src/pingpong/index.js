@@ -38,7 +38,6 @@ function displayGameStartScreen() {
         passive: false,
       });
     } else if (Capacitor.getPlatform() === "android") {
-      console.log("platform is android");
       document.addEventListener("touchmove", movePlayerHandle, {
         passive: false,
       });
@@ -66,6 +65,7 @@ currentScoreElem.innerHTML = `Score ${userScore} <br>
 function moveEnemyHandle(ballXPos) {
   let pageWidth = pageWrap.offsetWidth - enemyHandle.offsetWidth;
   let enemyHandleWidthHalf = enemyHandle.offsetWidth / 2;
+
   enemyHandle.style.left = ballXPos - enemyHandleWidthHalf + "px";
 }
 
@@ -112,8 +112,6 @@ function moveBall() {
 }
 
 function checkForCollisions(ballSpeed) {
-  // console.log(pageWrap.getBoundingClientRect().width);
-  console.log(ball.getBoundingClientRect().left);
   if (
     ball.getBoundingClientRect().bottom >=
       playerHandle.getBoundingClientRect().top &&
@@ -272,8 +270,6 @@ function checkForCollisions(ballSpeed) {
 }
 
 function changeDirection(ballSpeed) {
-  // console.log("changeDirection")
-
   if (southWest) {
     southEast = false;
     southWest = false;
@@ -299,7 +295,7 @@ function changeDirection(ballSpeed) {
 function movePlayerHandle(e) {
   let pageWidth = pageWrap.offsetWidth - playerHandle.offsetWidth;
   let playerHandleMiddlePoint = playerHandle.offsetWidth / 2;
-  console.log(pageWrap.offsetWidth);
+
   let playerXPos;
   if (Capacitor.getPlatform() === "web") {
     playerXPos = e.pageX;
@@ -310,13 +306,5 @@ function movePlayerHandle(e) {
 
   if (playerXPos <= pageWidth && playerXPos > 0) {
     playerHandle.style.left = playerXPos + "px";
-    // console.log("playerXPos");
-    // console.log(playerXPos);
-    // console.log("pageWrap.getBoundingClientRect().left");
-    // console.log(pageWrap.clientWidth);
-    /*        console.log("playerHandle.getBoundingClientRect().right");
-        console.log(playerHandle.getBoundingClientRect().right);
-        console.log("document.body.offsetWidth");
-        console.log(document.body.offsetWidth);*/
   }
 }
