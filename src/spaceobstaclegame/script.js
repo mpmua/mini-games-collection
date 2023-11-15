@@ -1,4 +1,6 @@
 import { Capacitor } from "@capacitor/core";
+import { isTouchDevice } from "../js/global";
+
 import satelliteImg from "./img/satellite.png";
 import rocketImg from "./img/rocket.png";
 import spaceImg from "./img/space-background.jpg";
@@ -274,7 +276,7 @@ function startGame() {
     }, 100);
     if (Capacitor.getPlatform() === "web") {
       document.addEventListener("click", jump);
-    } else if (Capacitor.getPlatform() === "android") {
+    } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
       document.addEventListener("touchstart", jump);
     }
 

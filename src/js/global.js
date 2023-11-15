@@ -1,5 +1,3 @@
-import { Capacitor } from "@capacitor/core";
-
 export function isTouchDevice() {
   return (
     "ontouchstart" in window ||

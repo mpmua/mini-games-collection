@@ -1,4 +1,5 @@
 import { Capacitor } from "@capacitor/core";
+import { isTouchDevice } from "../js/global";
 
 const pageWrap = document.querySelector("#page-wrap");
 const scoreDiv = document.querySelector(".score");
@@ -37,7 +38,7 @@ function displayGameStartScreen() {
       document.addEventListener("mousemove", movePlayerHandle, {
         passive: false,
       });
-    } else if (Capacitor.getPlatform() === "android") {
+    } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
       document.addEventListener("touchmove", movePlayerHandle, {
         passive: false,
       });

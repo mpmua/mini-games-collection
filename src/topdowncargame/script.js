@@ -1,4 +1,5 @@
 import { Capacitor } from "@capacitor/core";
+import { isTouchDevice } from "../js/global";
 
 import ambulanceImg from "./img/ambulance.png";
 import carImg from "./img/car.png";
@@ -158,14 +159,10 @@ startButton.addEventListener("click", function () {
     gameOverWrapper.style.visibility = "hidden";
 
     gameOver = false;
-    // if (Capacitor.getPlatform() === "web") {
-    //   document.addEventListener("mousemove", movePlayerCar);
-    // } else if (Capacitor.getPlatform() === "android") {
-    //   document.addEventListener("touchmove", movePlayerCar);
-    // }
+
     if (Capacitor.isNativePlatform()) {
       document.addEventListener("touchmove", movePlayerCar);
-    } else if (Capacitor.getPlatform() === "web") {
+    } else if (Capacitor.getPlatform() === "web" || isTouchDevice()) {
       document.addEventListener("mousemove", movePlayerCar);
     }
   });
