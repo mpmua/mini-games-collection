@@ -10,6 +10,7 @@ body {
   max-width: 768px !important;
   margin-inline: auto;
   background-color: rgb(91 116 161) !important;
+  overflow: hidden;
 }
 
 .back-btn-and-score-wrapper {
