@@ -32,14 +32,12 @@ function displayGameStartScreen() {
   gameStartText.innerHTML = "Keep the ball in play";
 
   startBtn.addEventListener("click", () => {
-    if (Capacitor.getPlatform() === "web") {
-      // "mousemove"
-      // document.addEventListener("touchmove", movePlayerHandle, {
-      document.addEventListener("mousemove", movePlayerHandle, {
+    if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
+      document.addEventListener("touchmove", movePlayerHandle, {
         passive: false,
       });
-    } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
-      document.addEventListener("touchmove", movePlayerHandle, {
+    } else if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("mousemove", movePlayerHandle, {
         passive: false,
       });
     }

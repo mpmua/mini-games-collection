@@ -274,10 +274,10 @@ function startGame() {
         //   item.x += 120;
       });
     }, 100);
-    if (Capacitor.getPlatform() === "web") {
-      document.addEventListener("click", jump);
-    } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
+    if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
       document.addEventListener("touchstart", jump);
+    } else if (Capacitor.getPlatform() === "web") {
+      document.addEventListener("click", jump);
     }
 
     scoreListElem.style.visibility = "hidden";

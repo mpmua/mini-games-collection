@@ -411,10 +411,10 @@ function restartGame() {
 }
 
 function startGame() {
-  if (Capacitor.getPlatform() === "web") {
-    document.addEventListener("click", playerJump);
-  } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
+  if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
     document.addEventListener("touchstart", playerJump);
+  } else if (Capacitor.getPlatform() === "web") {
+    document.addEventListener("click", playerJump);
   }
 
   obstacleSpeed = 1.2;

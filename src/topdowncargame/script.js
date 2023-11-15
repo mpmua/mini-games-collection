@@ -160,9 +160,9 @@ startButton.addEventListener("click", function () {
 
     gameOver = false;
 
-    if (Capacitor.isNativePlatform()) {
+    if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
       document.addEventListener("touchmove", movePlayerCar);
-    } else if (Capacitor.getPlatform() === "web" || isTouchDevice()) {
+    } else if (Capacitor.getPlatform() === "web") {
       document.addEventListener("mousemove", movePlayerCar);
     }
   });
