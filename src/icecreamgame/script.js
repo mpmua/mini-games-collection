@@ -1,4 +1,5 @@
 import { Device } from "@capacitor/device";
+import { isTouchDevice } from "../js/global";
 
 import cactusImg from "./img/cactus.png";
 import cloudImg from "./img/cloud.png";
@@ -412,7 +413,7 @@ function restartGame() {
 function startGame() {
   if (Capacitor.getPlatform() === "web") {
     document.addEventListener("click", playerJump);
-  } else if (Capacitor.getPlatform() === "android") {
+  } else if (Capacitor.getPlatform() === "android" || isTouchDevice()) {
     document.addEventListener("touchstart", playerJump);
   }
 
