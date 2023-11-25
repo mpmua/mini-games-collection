@@ -47,7 +47,3 @@ To build the project for production:
 ```bash
 npm run build
 ```
-
-### License
-
-This project is licensed under the MIT License.
