@@ -1,12 +1,53 @@
-## Created with Capacitor Create App
+# Mini Games Collection
 
-This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app),
-and comes with a very minimal shell for building an app.
+This application was built using web technologies (HTML, CSS, Javascript) and is bundled with Vite, it contains four games, each game stores the user score locally and updates it upon the user beating their own high score.
 
-### Running this example
+The CapacitorJS runtime is used with this application to allow it to be installed onto mobile devices (Android & iOS) as a native application.
 
-To run the provided example, you can use `npm start` command.
+## Getting Started
+
+To run this project locally on your machine, follow these steps:
+
+### Prerequisites
+
+- Node.js installed ([Download Node.js](https://nodejs.org/))
+
+### Installation
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/mpmua/pure-weather.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd pure-weather
+   ```
+
+3. Install dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
+### Usage
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+### Build
+
+To build the project for production:
 
 ```bash
-npm start
+npm run build
 ```
+
+### License
+
+This project is licensed under the MIT License.
