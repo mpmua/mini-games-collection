@@ -26,8 +26,11 @@ body {
 }
 
 #player {
-  width: 8%;
-  height: 3%;
+  /* width: 8%;
+  height: 3%; */
+  height: clamp(1rem, 0.735rem + 3.676vw, 2.5rem);
+  width: clamp(1rem, 0.735rem + 3.676vw, 2.5rem);
+  /* border-radius: 50%; */
   position: absolute;
   left: 35%;
   -webkit-user-select: none;
@@ -42,12 +45,9 @@ body {
 }
 
 .obstacle {
-  /*  display: none;*/
   position: absolute;
-  width: 10%;
+  width: clamp(1rem, 1.397rem + 4.902vw, 3.75rem);
   height: 42%;
-  /*  width: 1%;
-  height: 1%;*/
   background-color: #5a5a5a;
 }
 
