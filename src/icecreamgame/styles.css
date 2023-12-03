@@ -37,6 +37,7 @@ body {
   left: 50%;
   padding-top: 3rem;
   z-index: 6;
+  -webkit-animation: blink 1s steps(5, start) infinite;
   animation: blink 1s steps(5, start) infinite;
 }
 
@@ -82,7 +83,26 @@ body {
 }
 
 .animate-jump {
+  -webkit-animation: jump 500ms;
   animation: jump 500ms;
+}
+
+@-webkit-keyframes jump {
+  0% {
+    transform: translate(70%, -30%);
+  }
+  30% {
+    transform: translate(70%, -165%);
+  }
+  50% {
+    transform: translate(70%, -165%);
+  }
+  75% {
+    transform: translate(70%, -165%);
+  }
+  100% {
+    transform: translate(70%, -30%);
+  }
 }
 
 @keyframes jump {
