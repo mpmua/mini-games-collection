@@ -26,10 +26,10 @@ body {
 }
 
 #player {
-  /* width: 8%;
-  height: 3%; */
-  height: clamp(1rem, 0.735rem + 3.676vw, 2.5rem);
-  width: clamp(1rem, 0.735rem + 3.676vw, 2.5rem);
+  width: 8%;
+  height: 3%;
+  /* height: clamp(1rem, 0.735rem + 3.676vw, 2.5rem);
+  width: clamp(1rem, 0.735rem + 3.676vw, 2.5rem); */
   /* border-radius: 50%; */
   position: absolute;
   left: 35%;
