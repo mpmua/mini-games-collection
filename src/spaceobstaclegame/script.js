@@ -182,7 +182,7 @@ function jump() {
     jumping = true;
     jumpCount = 0;
 
-    var jumpInterval = setInterval(() => {
+    let jumpInterval = setInterval(() => {
       playerTop =
         (player.getBoundingClientRect().top / window.innerHeight) * 100;
 
