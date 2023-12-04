@@ -167,7 +167,9 @@ function playerDrop() {
     //    playerDropDistance += 0.5;
 
     playerTop =
-      (player.getBoundingClientRect().top / pageWrap.innerHeight) * 100;
+      (player.getBoundingClientRect().top /
+        pageWrap.getBoundingClientRect().height) *
+      100;
     player.style.top = playerTop + 0.3 + "%";
     //   player.style.top = playerDropDistance + "%";
   } else {
@@ -185,7 +187,9 @@ function jump() {
 
     var jumpInterval = setInterval(() => {
       playerTop =
-        (player.getBoundingClientRect().top / pageWrap.innerHeight) * 100;
+        (player.getBoundingClientRect().top /
+          pageWrap.getBoundingClientRect().height) *
+        100;
 
       if (jumpCount < 25) {
         //   clearInterval(playerDrop);
