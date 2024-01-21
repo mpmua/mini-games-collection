@@ -34,3 +34,12 @@ body {
 img {
   box-shadow: 0px 0px 5px #000;
 }
+
+.privacy-policy-wrap {
+  text-align: center;
+  margin: 2rem;
+}
+
+.privacy-policy-wrap a {
+  color: #fff;
+}
